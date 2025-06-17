@@ -1,0 +1,33 @@
+/* static/css/styles.css */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eeeeee;
+}
+
+/* Style for form tables */
+table th, table td {
+    padding: 8px;
+    vertical-align: top;
+}
+
+table th {
+    text-align: right;
+    padding-right: 15px;
+}
+
+/* Style for error messages in forms */
+.errorlist {
+    color: red;
+    list-style-type: none;
+    padding-left: 0;
+}

@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  {% if form.instance.pk %}
+    <title>Edit Book: {{ form.instance.title }}</title>
+  {% else %}
+    <title>Add New Book</title>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if form.instance.pk %}
+    <h1>Edit Book: {{ form.instance.title }}</h1>
+  {% else %}
+    <h1>Add New Book</h1>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save Book</button>
+  </form>
+  <br>
+  <p><a href="{% if form.instance.pk %}{{ form.instance.get_absolute_url }}{% else %}{% url 'book_list' %}{% endif %}">Cancel</a></p>
+{% endblock %}
