@@ -4,9 +4,9 @@
 
 {% block content %}
   <h1>{{ book.title }}</h1>
-  <p><strong>Author:</strong> {{ book.author }}</p>
-  <p><strong>Publication Date:</strong> {{ book.publication_date|default:"N/A" }}</p>
-  <p><strong>Price:</strong> ${{ book.price }}</p>
+  <p><strong>Description:</strong> {{ book.description|default:"N/A" }}</p>
+  <p><strong>Rate:</strong> {{ book.rate }}/5</p> <!-- Assuming a 5-star rating -->
+  <p><strong>Views:</strong> {{ book.views }}</p>
   <p>
     <a href="{% url 'book_edit' book.pk %}">Edit Book</a> |
     <a href="{% url 'book_delete' book.pk %}">Delete Book</a>

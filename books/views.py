@@ -19,12 +19,12 @@ class BookDetailView(DetailView):
 class BookCreateView(CreateView):
     model = Book
     template_name = 'books/book_form.html'
-    fields = ['title', 'author', 'publication_date', 'price'] 
+    fields = ['title', 'description', 'rate', 'views'] 
 
 class BookUpdateView(UpdateView):
     model = Book
     template_name = 'books/book_form.html'
-    fields = ['title', 'author', 'publication_date', 'price'] 
+    fields = ['title', 'description', 'rate', 'views'] 
 
 class BookDeleteView(DeleteView):
     model = Book
