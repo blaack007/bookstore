@@ -5,11 +5,29 @@
 {% block content %}
   <h1>{{ book.title }}</h1>
   <p><strong>Description:</strong> {{ book.description|default:"N/A" }}</p>
+  <p><strong>Added by:</strong> {{ book.user.username }}</p>
+  <p><strong>Categories:</strong> 
+    {% for category in book.categories.all %}
+      {{ category.name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+      N/A
+    {% endfor %}
+  </p>
   <p><strong>Rate:</strong> {{ book.rate }}/5</p> <!-- Assuming a 5-star rating -->
   <p><strong>Views:</strong> {{ book.views }}</p>
+  {% if book.isbn_details %}
+    <h4>ISBN Details:</h4>
+    <p><strong>ISBN Number:</strong> {{ book.isbn_details.isbn_number }}</p>
+    <p><strong>Author Title:</strong> {{ book.isbn_details.author_title }}</p>
+    <p><strong>Book Title (from ISBN):</strong> {{ book.isbn_details.book_title }}</p>
+  {% else %}
+    <p>No ISBN information available for this book.</p>
+  {% endif %}
   <p>
-    <a href="{% url 'book_edit' book.pk %}">Edit Book</a> |
-    <a href="{% url 'book_delete' book.pk %}">Delete Book</a>
+    {% if user.is_authenticated and user == book.user or user.is_superuser %}
+      <a href="{% url 'book_edit' book.pk %}">Edit Book</a> |
+      <a href="{% url 'book_delete' book.pk %}">Delete Book</a>
+    {% endif %}
   </p>
   <p><a href="{% url 'book_list' %}">Back to book list</a></p>
 {% endblock %}
